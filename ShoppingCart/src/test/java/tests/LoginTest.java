@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import base.BaseTest;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.RetryAnalyser;
 
 public class LoginTest extends BaseTest {
 
