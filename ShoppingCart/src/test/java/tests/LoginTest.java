@@ -1,20 +1,25 @@
 package tests;
 
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.ExcelData;
 import utils.RetryAnalyser;
 
 public class LoginTest extends BaseTest {
-
-	@Test
-	public void validUserLogin() {
+  
+	
+	@Test()
+	public void validUserLogin() throws EncryptedDocumentException, IOException {
 
 		LoginPage loginPage=new LoginPage(driver);
-		loginPage.enterUserName("standard_user");
-		loginPage.enterPassword("secret_sauce");
+		loginPage.enterUserName(ExcelData.readExcelData(1, 0));
+		loginPage.enterPassword(ExcelData.readExcelData(1, 1));
 		loginPage.clickLoginBtn();
 		InventoryPage inv=new InventoryPage(driver);
 		inv.clickmenubtn();
@@ -23,11 +28,11 @@ public class LoginTest extends BaseTest {
 			
 	}
 	@Test
-	public void invalidUserLogin() {
+	public void invalidUserLogin() throws EncryptedDocumentException, IOException {
 
 		LoginPage loginPage=new LoginPage(driver);
-		loginPage.enterUserName("standard_user");
-		loginPage.enterPassword("secret_sauc");
+		loginPage.enterUserName(ExcelData.readExcelData(1, 0));
+		loginPage.enterPassword(ExcelData.readExcelData(1, 2));
 		loginPage.clickLoginBtn();
 		loginPage.verifyErrormesg();
 		
