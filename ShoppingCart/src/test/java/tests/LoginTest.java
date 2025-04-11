@@ -9,33 +9,30 @@ import base.BaseTest;
 import pages.InventoryPage;
 import pages.LoginPage;
 import utils.ExcelData;
-import utils.RetryAnalyser;
 
 public class LoginTest extends BaseTest {
-  
-	
-	@Test()
+
+	@Test(groups = {"Smoke"})
 	public void validUserLogin() throws EncryptedDocumentException, IOException {
 
-		LoginPage loginPage=new LoginPage(driver);
+		LoginPage loginPage = new LoginPage(driver);
 		loginPage.enterUserName(ExcelData.readExcelData(1, 0));
 		loginPage.enterPassword(ExcelData.readExcelData(1, 1));
 		loginPage.clickLoginBtn();
-		InventoryPage inv=new InventoryPage(driver);
+		InventoryPage inv = new InventoryPage(driver);
 		inv.clickmenubtn();
 		inv.clicklogoutbtn();
-		
-			
+
 	}
+
 	@Test
 	public void invalidUserLogin() throws EncryptedDocumentException, IOException {
 
-		LoginPage loginPage=new LoginPage(driver);
+		LoginPage loginPage = new LoginPage(driver);
 		loginPage.enterUserName(ExcelData.readExcelData(1, 0));
 		loginPage.enterPassword(ExcelData.readExcelData(1, 2));
 		loginPage.clickLoginBtn();
 		loginPage.verifyErrormesg();
-		
-			
+
 	}
 }

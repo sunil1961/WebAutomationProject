@@ -34,5 +34,7 @@ WebDriver driver;
 	}
 	public void clickFinishBtn() {
 		driver.findElement(finishBtn).click();
+		
+		
 	}
 }
